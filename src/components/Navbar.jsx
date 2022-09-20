@@ -4,15 +4,25 @@ import Logo from "../images/logo.png";
 import { FaBars, FaTimes } from "react-icons/fa"
 
 const Navbar = () => {
+    const [color, setcolor] = useState(false);
 
     const [click, setClick]= useState(false);
+
+    const changeColor =()=>{
+        if(window.scrollY >= 350){
+            setcolor(true);
+        } else{
+            setcolor(false);
+        }
+    }
+    window.addEventListener("scroll", changeColor);
 
     const handleClick = ()=>{
         setClick(!click);
     }
     const closeMenu = ()=> setClick(false);
   return (
-    <div className='header'>
+    <div className={color? "header header-bg" : "header"}>
         <nav className="navbar">
             <a href="/" className='logo'>
                 <img src={Logo} alt="logo" />
